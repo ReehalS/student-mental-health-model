@@ -1,9 +1,9 @@
 # ECS 171 Fall 2024 Research Project
 
 ## Team Members:
+- Angela Lee  - Team Leader
 - Sandeep Reehal
 - Anjali Jain
-- Angela Lee
 - Trisha Baadkar
 - Kyle Guanzon
 

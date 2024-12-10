@@ -3,7 +3,7 @@ import joblib
 import os
 
 # Define input features and their constraints
-st.title("Depression Prediction Model")
+st.title("Depression Prediction")
 
 # Inputs
 age = st.number_input("Age", min_value=16, max_value=35, step=1, format="%d")

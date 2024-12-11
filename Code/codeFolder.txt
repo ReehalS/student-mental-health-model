@@ -1,2 +1,0 @@
-So that this folder shows up on GitHub
-Delete after adding at least one file to this folder

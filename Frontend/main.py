@@ -52,8 +52,8 @@ elif(major=="law"):
     modelName="Naive Bayes"
     modelType="GaussianNB"
 elif(major=="medical"):
-    modelName="Neural Network"
-    modelType="KerasClassifier"
+    modelName="Random Forest Classifier"
+    modelType="RandomForestClassifier"
 elif(major=="others"):
     modelName="K-Nearest Neigbors Classifier"
     modelType="KNeighborsClassifier"

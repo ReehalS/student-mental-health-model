@@ -9,19 +9,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Input, Dense, Dropout
+from tensorflow.keras.layers import Input, Dense
 from tensorflow.keras.regularizers import l1, l2
 from tensorflow.keras.optimizers import SGD
 
-from scikeras.wrappers import KerasClassifier
-from sklearn.model_selection import GridSearchCV, KFold
-
 N_FEATURES = 4
-BINARY_CLASSIFICATION= True
-N_CLASSES = 5
-# add confusion matrix, f1 + auc score, precision/recall + roc curves
-# Define build_model function for KerasClassifier
-# def build_model(num_layers, num_neurons, activation, dropout_rate, momentum, reg_method, reg_rate, learning_rate):
 def build_model(num_layers, num_neurons, activation, momentum, reg_method, reg_rate, learning_rate):
     regularizer = l1(reg_rate) if reg_method=='l1' else l2(reg_rate)
 
@@ -32,15 +24,11 @@ def build_model(num_layers, num_neurons, activation, momentum, reg_method, reg_r
     # Hidden layers
     for _ in range(num_layers):
         model.add(Dense(num_neurons, activation=activation, kernel_regularizer=regularizer))
-        # model.add(Dropout(dropout_rate))
     # Output layer
-    if BINARY_CLASSIFICATION:
-        model.add(Dense(1, activation='sigmoid')) # binary classification
-    else:
-        model.add(Dense(N_CLASSES, activation='softmax')) # multi-class classification
+    model.add(Dense(1, activation='sigmoid'))
 
     optimizer = SGD(learning_rate=learning_rate, momentum=momentum)
-    loss_string = 'binary_crossentropy' if BINARY_CLASSIFICATION else 'sparse_categorical_crossentropy'
+    loss_string = 'binary_crossentropy'
     model.compile(loss=loss_string, optimizer=optimizer, metrics=['accuracy'])
     return model
 
@@ -55,8 +43,8 @@ semester_credit_load = st.number_input("Semester Credit Load", min_value=10, ste
 major = st.selectbox("Major", ["business", "engineering", "law", "medical", "others"])
 
 if(major=="business"):
-    modelName="Naive Bayes"
-    modelType= "GaussianNB"
+    modelName="Support Vector Machine"
+    modelType= "SVC"
 elif(major=="engineering"):
     modelName="Support Vector Machine"
     modelType="SVC"
